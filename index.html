@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Video test</title>
+</head>
+
+<body>
+    <div class="navbar"></div>
+    <div id="heading">
+        <h2>Video test</h2>
+    </div>
+    <div id="cont-1">
+        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
+            <source src="video1.mp4" type="video/mp4">
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    let player = videojs("my-video");
+
+    const videoSource = ['video1.mp4', 'video2.mp4'];
+
+    let index = 0;
+
+    player.on('ended', () => {
+        index = (index + 1) % videoSource.length;
+        player.src({
+            src: videoSource[index],
+            type: 'video/mp4'
+        });
+        player.play();
+    });
+
+</script>
